@@ -1,5 +1,5 @@
 export default {
-  isDialog: false,
+  isDialog: true,
   startDate: '',
   startTime: '',
   hasTime: ''

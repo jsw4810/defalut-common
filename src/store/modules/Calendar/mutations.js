@@ -5,12 +5,8 @@ export default {
     state.isDialog = payload;
   },
   [OPEN_CALENDAR_DIALIOG]: (state, payload) => {
-    state.calendar.startDate = payload.date;
-    state.calendar.startTime = payload.time;
-    state.calendar.hasTime = payload.hasTime;
-    state.dialog = true;
+    console.log('testeststs');
+    console.log(state);
+    console.log(payload);
   }
-  // [CLOSE_CALENDAR_DIALOG]: state => {
-  //   state.dialog = false;
-  // }
 };

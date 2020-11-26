@@ -27,11 +27,10 @@
             :events="events"
             :event-color="getEventColor"
             :type="type"
-            @click:event="showEvent"
-            @click:more="viewDay"
-            @click:date="open({ date })"
+            @click:date="onOpenDialogs"
             @change="updateRange"
-          ></v-calendar>
+          >
+          </v-calendar>
           <v-menu
             v-model="selectedOpen"
             :close-on-content-click="false"
@@ -63,15 +62,16 @@
             </v-card>
           </v-menu>
         </v-sheet>
+        <dialogs style="position:absolute; right:10px; margin-top:10px;" />
       </v-col>
     </v-row>
-    <dialogs :dialog="true" />
   </v-app>
 </template>
 <script>
+import * as calendar from '@/store/modules/Calendar';
 import Dialogs from '@/components/Dialogs';
-import { mapState, mapMutations } from 'vuex';
-import { OPEN_CALENDAR_DIALIOG } from '../store/modules/Calendar/types';
+import { OPEN_CALENDAR_DIALIOG } from '@/store/modules/Calendar/types';
+
 // CLOSE_CALENDAR_DIALOG
 export default {
   components: { Dialogs },
@@ -92,14 +92,18 @@ export default {
     names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party']
   }),
   computed: {
-    ...mapState('Calendar', {
-      test: ({ isDialog }) => isDialog
+    ...calendar.mapState({
+      isDialog: ({ isDialog }) => isDialog
     })
   },
   mounted() {
     this.$refs.calendar.checkChange();
   },
   methods: {
+    ...calendar.mapMutations({
+      open: OPEN_CALENDAR_DIALIOG
+    }),
+
     viewDay({ date }) {
       console.log(date);
       this.focus = date;
@@ -130,9 +134,10 @@ export default {
       });
       this.events = events;
     },
-    ...mapMutations({
-      open: OPEN_CALENDAR_DIALIOG
-    })
+    onOpenDialogs({ date }) {
+      console.log(document.getElementById('test'));
+      this.open(date);
+    }
   }
 };
 </script>

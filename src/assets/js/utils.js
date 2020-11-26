@@ -36,17 +36,17 @@ export const autoRequireRoute = () => {
 };
 
 /* auto require vuex module */
-export const autoRequireModule = () => {
-  const modulesFiles = require.context('~/store/modules', true, /\.js$/);
-  const modules = modulesFiles.keys().reduce((acc, modulePath) => {
-    const [moduleName] = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1').split('/');
-    const value = modulesFiles(modulePath);
-    if (!value.default.namespaced) return acc;
-    acc[moduleName] = value.default;
-    return acc;
-  }, {});
-  return modules;
-};
+// export const autoRequireModule = () => {
+//   const modulesFiles = require.context('~/store/modules', true, /\.js$/);
+//   const modules = modulesFiles.keys().reduce((acc, modulePath) => {
+//     const [moduleName] = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1').split('/');
+//     const value = modulesFiles(modulePath);
+//     if (!value.default.namespaced) return acc;
+//     acc[moduleName] = value.default;
+//     return acc;
+//   }, {});
+//   return modules;
+// };
 
 /* vuex plugin */
 export const createPersistedstate = () =>

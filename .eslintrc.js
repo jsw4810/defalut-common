@@ -22,7 +22,8 @@ module.exports = {
     'comma-dangle': 'off',
     'arrow-parens': 'off',
     'import/extensions': 'off',
-    'implicit-arrow-linebreak': 'off'
+    'implicit-arrow-linebreak': 'off',
+    ' no-unused-vars': 'off'
     // 'no-dupe-keys': 'off'
   }
 };
